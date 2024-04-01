@@ -4,6 +4,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '/intro_pages/into_page1.dart';
 import '/intro_pages/intro_page2.dart';
 import '/intro_pages/intro_page3.dart';
+import '/homepage.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -13,7 +14,7 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  PageController _controller = PageController();
+  final PageController _controller = PageController();
   bool isLastPage = false;
 
   @override
@@ -57,11 +58,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 isLastPage
                     ? GestureDetector(
                         onTap: () {
-                          _controller.nextPage(
-                            duration: const Duration(
-                              milliseconds: 500,
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
                             ),
-                            curve: Curves.easeIn,
                           );
                         },
                         child: const Text('Done'),
