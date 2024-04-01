@@ -13,15 +13,21 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  PageController _controller = PageController();
+  bool isLastPage = false;
+
   @override
   Widget build(BuildContext context) {
-    PageController controller = PageController();
-
     return Scaffold(
       body: Stack(
         children: [
           PageView(
-            controller: controller,
+            controller: _controller,
+            onPageChanged: (value) {
+              setState(() {
+                isLastPage = (value == 2);
+              });
+            },
             children: const [
               IntroPage1(),
               IntroPage2(),
@@ -35,19 +41,42 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: [
                 // skip
                 GestureDetector(
+                  onTap: () {
+                    _controller.jumpToPage(2);
+                  },
                   child: const Text('Skip'),
                 ),
 
                 // dot indicators
                 SmoothPageIndicator(
-                  controller: controller,
+                  controller: _controller,
                   count: 3,
                 ),
 
                 // next
-                GestureDetector(
-                  child: const Text('Next'),
-                ),
+                isLastPage
+                    ? GestureDetector(
+                        onTap: () {
+                          _controller.nextPage(
+                            duration: const Duration(
+                              milliseconds: 500,
+                            ),
+                            curve: Curves.easeIn,
+                          );
+                        },
+                        child: const Text('Done'),
+                      )
+                    : GestureDetector(
+                        onTap: () {
+                          _controller.nextPage(
+                            duration: const Duration(
+                              milliseconds: 500,
+                            ),
+                            curve: Curves.easeIn,
+                          );
+                        },
+                        child: const Text('Next'),
+                      ),
               ],
             ),
           ),
