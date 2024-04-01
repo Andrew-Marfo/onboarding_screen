@@ -10,6 +10,22 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    PageController _controller = PageController();
+
+    return Scaffold(
+      body: PageView(
+        children: [
+          Container(
+            color: Colors.blue,
+          ),
+          Container(
+            color: Colors.yellow,
+          ),
+          Container(
+            color: Colors.red,
+          ),
+        ],
+      ),
+    );
   }
 }
