@@ -30,9 +30,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ),
           Container(
             alignment: const Alignment(0, 0.8),
-            child: SmoothPageIndicator(
-              controller: controller,
-              count: 3,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // skip
+                GestureDetector(
+                  child: const Text('Skip'),
+                ),
+
+                // dot indicators
+                SmoothPageIndicator(
+                  controller: controller,
+                  count: 3,
+                ),
+
+                // next
+                GestureDetector(
+                  child: const Text('Next'),
+                ),
+              ],
             ),
           ),
         ],
