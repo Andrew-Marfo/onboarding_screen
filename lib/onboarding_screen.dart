@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '/intro_pages/into_page1.dart';
+import '/intro_pages/intro_page2.dart';
+import '/intro_pages/intro_page3.dart';
+
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -18,16 +22,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           PageView(
             controller: controller,
-            children: [
-              Container(
-                color: Colors.blue,
-              ),
-              Container(
-                color: Colors.yellow,
-              ),
-              Container(
-                color: Colors.red,
-              ),
+            children: const [
+              IntroPage1(),
+              IntroPage2(),
+              IntroPage3(),
             ],
           ),
           Container(
